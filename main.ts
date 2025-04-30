@@ -4,20 +4,21 @@ import MindMapperSettings from 'src/core/interface/mind_mapper_settings';
 import SettingsHelper from 'src/core/helpers/settings';
 import SidebarCardView from 'src/presentation/cardView/sidebarCardView';
 
-export default class MindMapperPlugin extends Plugin {
+export default class MindCardPlugin extends Plugin {
 	settings: MindMapperSettings;
 	commands: Command[];
 	cardView: SidebarCardView;
 	cardViewType: string = SidebarCardView.viewType;
+	db: CardDatabase;
 
 	// Singleton instance
-	static instance: MindMapperPlugin;
+	static instance: MindCardPlugin;
 
 	/**
 	 * Updates the singleton instance of the plugin.
 	 * @param plugin The current plugin instance.
 	 */
-	static update(plugin: MindMapperPlugin) {
+	static update(plugin: MindCardPlugin) {
 		this.instance = plugin;
 	}
 
@@ -25,7 +26,10 @@ export default class MindMapperPlugin extends Plugin {
 	 * Retrieves the singleton instance of the plugin.
 	 * @returns The current plugin instance.
 	 */
-	static getInstance(): MindMapperPlugin {
+	static getInstance(): MindCardPlugin {
+		if (!this.instance) {
+			throw new Error("MindMapperPlugin instance is not initialized. Ensure that the plugin's onload() method has been called.");
+		}
 		return this.instance;
 	}
 
@@ -34,7 +38,8 @@ export default class MindMapperPlugin extends Plugin {
 	 * Initializes settings, commands, and views.
 	 */
 	async onload() {
-		MindMapperPlugin.update(this);
+		console.log("Loading MindMapper Plugin");
+		MindCardPlugin.update(this);
 
 		// Initialize settings, commands, and views
 		this.settings = await new SettingsHelper(this).loadSettings();
@@ -44,7 +49,7 @@ export default class MindMapperPlugin extends Plugin {
 			this.commands = this.activateCommands();
 		});
 		
-		MindMapperPlugin.update(this);
+		MindCardPlugin.update(this);
 	}
 
 	/**
@@ -77,7 +82,7 @@ export default class MindMapperPlugin extends Plugin {
 		});
 
 		// Add ribbon icon
-		const ribbonIconEl = this.addRibbonIcon('map', 'Sample Plugin', async () => {
+		const ribbonIconEl = this.addRibbonIcon('gallery-vertical-end', 'Sample Plugin', async () => {
 			new Notice('This is a notice!');
 			await this.activateNoteCardView();
 		});

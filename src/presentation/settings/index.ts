@@ -1,11 +1,11 @@
-import MindMapperPlugin from "main";
+import MindCardPlugin from "main";
 import { App, PluginSettingTab, Setting } from "obsidian";
 import { FolderSuggest } from "./utils/fileSuggester";
 
 export class MainMindMapperSettingsTab extends PluginSettingTab {
-	plugin: MindMapperPlugin;
+	plugin: MindCardPlugin;
 
-	constructor(app: App, plugin: MindMapperPlugin) {
+	constructor(app: App, plugin: MindCardPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}

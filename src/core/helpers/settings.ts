@@ -1,10 +1,10 @@
-import MindMapperPlugin from "main";
+import MindCardPlugin from "main";
 import MindMapperSettings from "../interface/mind_mapper_settings";
 
 class SettingsHelper {
-	plugin: MindMapperPlugin;
+	plugin: MindCardPlugin;
 
-	constructor(plugin: MindMapperPlugin) {
+	constructor(plugin: MindCardPlugin) {
 		this.plugin = plugin;
 	}
 

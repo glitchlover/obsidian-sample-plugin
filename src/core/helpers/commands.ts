@@ -1,16 +1,16 @@
-import MindMapperPlugin from "main";
+import MindCardPlugin from "main";
 import { Command, Editor, MarkdownView, Notice, Workspace } from "obsidian";
-import CardEngine from "./cardEngine";
+// import CardOperations from "src/domain/cardOperations";
 
 class CommandHelper {
-	plugin: MindMapperPlugin;
+	plugin: MindCardPlugin;
 	editor: Editor;
 	view: MarkdownView;
 	workspace: Workspace;
 
 
 	constructor() {
-		this.plugin = MindMapperPlugin.instance;
+		this.plugin = MindCardPlugin.instance;
 		this.workspace = this.plugin.app.workspace;
 	}
 
@@ -28,7 +28,7 @@ class CommandHelper {
 						new Notice('No active MarkdownView found.'); 
 						throw new Error('No active MarkdownView found.'); 
 					})();
-					new CardEngine().create(this.editor, this.view)
+					// new CardOperations().create(this.editor, this.view)
 					new Notice('Mindmapper opened!');
 				}
 			},
