@@ -1,5 +1,5 @@
 import { Command, Notice, Plugin, WorkspaceLeaf } from 'obsidian';
-import CommandHelper from 'src/core/helpers/commands';
+import CommandHelper from 'src/core/helpers/Commands';
 import MindMapperSettings from 'src/core/interface/mind_mapper_settings';
 import SettingsHelper from 'src/core/helpers/settings';
 import SidebarCardView from 'src/presentation/cardView/sidebarCardView';
